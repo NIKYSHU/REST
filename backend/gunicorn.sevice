@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn daemon for projectGB
+After=network.target
+[Service]
+User=michael
+Group=michael
+WorkingDirectory=/home/michael/todo_project
+ExecStart=/home/django/venv/bin/gunicorn --access-logfile - --workers 3 --env
+DJANGO_SETTINGS_MODULE="Django_Rest_Framework_GB.settings_prod" --env
+DJANGO_SECRET_KEY='_h94+q_xj7dshrj58iyznl^ighi=qlffj!d2jncd87nzkucke1' --bind
+unix:/home/michael/todo_project/todolms.sock Django_Rest_Framework_GB.wsgi
+[Install]
+WantedBy=multi-user.target
